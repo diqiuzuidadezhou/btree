@@ -69,8 +69,11 @@ void btInset(int node)
 		      child1 = m_nodes[parent].rchild;
 	              child2 = m_nodes[child1].lchild;
 		      m_nodes[parent].rchild = child2;
-		     m_nodes[child2].parent = parent;
-			  
+		      m_nodes[child2].parent = parent;
+		      m_nodes[child1].lchild = parent;
+		      m_nodes[child1].parent = m_nodes[parent].parent;
+		      parent = m_nodes[parent].parent;
+		      m_nodes[parent].;
 		  }
 	     }
 	}
