@@ -47,4 +47,31 @@ void btInset(int node)
      }
      *index = node;
      m_nodes[node].parent = parent;
+     
+	while(0 != parent)
+	{
+	    int child1 = m_nodes[parent].lchild;
+	    int child2 = m_nodes[parent].rchild;
+	    int balance = m_nodes[child1].height - m_nodes[child1].height;
+	     if(balance<-1 )
+	     {
+	          child1 = m_nodes[child2].lchild;
+		  child2 = m_nodes[child2].rchild;
+		   balance = m_nodes[child1].height - m_nodes[child1].height;
+		  if(balance<0)
+		  {
+		      child2 = m_nodes[parent].rchild;
+		      m_nodes[child2].lchild = m_nodes[child1].rchild;  
+		      m_nodes[child2].parent = child1;
+		      m_nodes[child1].parent = parent;
+		      m_nodes[child1].rchild = child2;
+		      m_nodes[parent].rchild = child1;
+		      child1 = m_nodes[parent].rchild;
+	              child2 = m_nodes[child1].lchild;
+		      m_nodes[parent].rchild = child2;
+		     m_nodes[child2].parent = parent;
+			  
+		  }
+	     }
+	}
 }
