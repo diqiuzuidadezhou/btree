@@ -29,20 +29,22 @@ void btInset(int node)
      }
      int data = m_nodes[node].key;
      int *index = &m_root;
-     
+     int parent = 0;
      while(0 != *index)
      {
          if(data == m_nodes[*index].key)
 	    return;
 	 else if(data < m_nodes[*index].key)
 	 {
-	    index = &m_nodes[*index].lchild;
+	    parent = *index;
+	    index = &m_nodes[*index].lchild;	 
 	 }
 	 else if(data > m_nodes[*index].key)	
 	 {
+	     parent = *index; 
 	     index = &m_nodes[*index].rchild;
 	 }
      }
      *index = node;
-     
+     m_nodes[node].parent = parent;
 }
